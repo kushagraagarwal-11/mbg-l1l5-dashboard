@@ -1,0 +1,131 @@
+<!doctype html><html><head><meta charset=utf-8><title>WIOM · MBG L1→L5 Journey</title>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif}
+body{background:#13151a;color:#e6e6ea;min-height:100vh;display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:14px 4vw;background:#8f3560;flex-wrap:wrap;gap:8px}
+.brand{font-size:22px;font-weight:900;letter-spacing:1px;color:#f2f2f5}
+.brand small{font-weight:500;opacity:.9;font-size:14px;margin-left:10px}
+.gen{font-size:13px;font-weight:600;color:#f0d8e6}
+.sub{padding:9px 4vw;background:#181b21;border-bottom:1px solid #262a33;font-size:13.5px;color:#9a9aa6;font-weight:600;line-height:1.5}
+.sub b{color:#bb9a5e}
+.strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));background:#181b21;border-bottom:1px solid #262a33}
+.sc{text-align:center;padding:14px 6px;border-right:1px solid #22252d}
+.sc b{display:block;font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1.05}
+.sc span{font-size:11.5px;color:#8f8f9a;font-weight:600}
+.sc .scsub{display:block;font-size:11.5px;font-weight:800;margin-top:2px;color:#6ba587}
+.sc.rose b{color:#b5688f}.sc.sage b{color:#6ba587}.sc.gold b{color:#bb9a5e}.sc.steel b{color:#7593b3}
+.grid{flex:1;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:14px;padding:16px 4vw 8px}
+.panel{background:#181b21;border:1px solid #262a33;border-radius:13px;padding:12px 16px;display:flex;flex-direction:column}
+.panel h2{font-size:16px;font-weight:800;margin-bottom:6px;letter-spacing:.4px}
+.panel .note{font-size:11px;color:#8f8f9a;line-height:1.35;margin-top:auto;padding-top:6px}
+.p1 h2{color:#7593b3}.p2 h2{color:#bb9a5e}.p3 h2{color:#6ba587}.p4 h2{color:#b5688f}.p5 h2{color:#5fbf8f}.pg h2{color:#e0b357}
+table{width:100%;border-collapse:collapse}
+th{font-size:11px;color:#8f8f9a;font-weight:700;text-align:right;padding:3px 8px;border-bottom:2px solid #2a2e37}
+th.l{text-align:left}
+td{font-size:17px;font-weight:800;text-align:right;padding:7px 8px;border-bottom:1px solid #22252d;letter-spacing:-.3px}
+td.l{text-align:left;font-size:12.5px;color:#b0b0b8;font-weight:600;letter-spacing:0}
+td.pre{color:#b5688f}td.post{color:#f2f2f5}
+.delta{font-size:13px;font-weight:800}
+.up{color:#6ba587}.down{color:#c9736f}.flat{color:#8f8f9a}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;padding:10px 4vw;font-size:12px;color:#8f8f9a;background:#0e1013}
+</style></head><body>
+<div class=bar>
+ <div class=brand>WIOM <small>Minimum Guarantee · L1→L5 Journey · App Opens → Install</small></div>
+ <div class=gen>Generated <span id=gen>—</span> · refreshes hourly</div>
+</div>
+<div class=sub>PRE <b>16–30 Jun</b> (15d daily avg) &nbsp;·&nbsp; POST <b>since 1 Jul</b> (<span id=pd>—</span> complete days) &nbsp;·&nbsp; funnel matured to <b><span id=nh>—</span>h</b> on both sides (apples-to-apples) &nbsp;·&nbsp; <span id=ncsp>—</span> enrolled CSPs &nbsp;·&nbsp; <b>early POST window — deltas are directional</b></div>
+<div class=strip>
+ <div class="sc rose"><b id=k_enr>—</b><span>Enrolled CSPs</span></div>
+ <div class="sc steel"><b id=k_ab>—</b><span>Active Base (customers)</span></div>
+ <div class="sc gold"><b id=k_leads>—</b><span>Leads / day (POST)</span><span class=scsub id=k_leads_s></span></div>
+ <div class="sc sage"><b id=k_inst>—</b><span>Installs / day, matured (POST)</span><span class=scsub id=k_inst_s></span></div>
+ <div class="sc sage"><b id=k_mtd>—</b><span id=k_mtd_l>Installs (raw MTD)</span><span class=scsub id=k_mtd_s></span></div>
+ <div class="sc gold"><b id=k_gate>—</b><span id=k_gate_l>Gate rate MTD (MG doc rule)</span><span class=scsub id=k_gate_s></span></div>
+</div>
+<div class=grid>
+ <div class="panel p1"><h2>L1 · Engagement</h2>
+  <table><thead><tr><th class=l></th><th>PRE</th><th>POST</th><th>&Delta;</th></tr></thead><tbody id=t1></tbody></table>
+  <div class=note>DAU is near ceiling by design — engagement is a guardrail, not the bottleneck. Lost installs are not caused by CSPs missing leads.</div></div>
+ <div class="panel p2"><h2>L2 · Lead Supply (Wiom's side)</h2>
+  <table><thead><tr><th class=l></th><th>PRE</th><th>POST</th><th>&Delta;</th></tr></thead><tbody id=t2></tbody></table>
+  <div class=note>Lead = one (connection, CSP) pair. Supply is the compact's Wiom half — installs can't grow if this line doesn't.</div></div>
+ <div class="panel p3"><h2>L3 · Lead Response (CSP acts)</h2>
+  <table><thead><tr><th class=l></th><th>PRE</th><th>POST</th><th>&Delta;</th></tr></thead><tbody id=t3></tbody></table>
+  <div class=note>Unactioned leads auto-cancel at 14h (system kill) — each one enters the CSP's gate denominator with no install.</div></div>
+ <div class="panel p4"><h2>L4 · Execution</h2>
+  <table><thead><tr><th class=l></th><th>PRE</th><th>POST</th><th>&Delta;</th></tr></thead><tbody id=t4></tbody></table>
+  <div class=note>Failure reports carry reasons (coverage / no-show / customer) — the biggest single leak between assignment and install.</div></div>
+ <div class="panel p5"><h2>L5 · Outcome: Installs</h2>
+  <table><thead><tr><th class=l></th><th>PRE</th><th>POST</th><th>&Delta;</th></tr></thead><tbody id=t5></tbody></table>
+  <div class=note>Matured = installed within the same N hours of its own lead-send on both sides.</div></div>
+ <div class="panel pg"><h2>₹ MG Gate · &gt;60% on matured leads</h2>
+  <table><thead><tr><th class=l></th><th id=gm1>—</th><th id=gm2>—</th></tr></thead><tbody id=tg></tbody></table>
+  <div class=note>Doc rule: installed + CSP-declined + customer-cancel-after-slot + 14h-timeouts. Failed-installs &amp; reassignment-cancels NOT counted (ruling pending). Early-month rates understate — cancels land in minutes, installs in days.</div></div>
+</div>
+<div class=foot><div>MBG · Minimum Guarantee Program · grain: (connection, CSP) leads · sources: install-execution state history + transition log + CleverTap</div><div>PRE 16–30 Jun vs POST since 1 Jul launch</div></div>
+<script>
+var D={"n_hours": 49, "days": {"PRE": 15.0, "POST": 2.0}, "post_end": "2026-07-02", "enrolled": 402, "months": {"prev": "2026-06", "cur": "2026-07"}, "generated": "03 Jul 2026, 10:49 IST", "PRE": {"sent": 2194, "sent_d": 146.3, "reach_d": 108, "resp14_pct": 60.3, "prop_pct": 55.2, "decl_pct": 12.7, "asgn_pct": 30.3, "fail_pct": 17.6, "a2i_pct": 44.7, "inst_pct": 13.5, "inst_d": 19.8, "prop_tat": 0.35, "asgn_tat": 7.3, "a2i_tat": 10.0, "dau": 386.7, "dau_pct": 96.2, "om_opens_d": 5645, "tech_opens_d": 1065, "leadday_pct": 98.6}, "POST": {"sent": 318, "sent_d": 159.0, "reach_d": 122, "resp14_pct": 71.7, "prop_pct": 61.9, "decl_pct": 12.9, "asgn_pct": 29.9, "fail_pct": 4.7, "a2i_pct": 34.7, "inst_pct": 10.4, "inst_d": 16.5, "prop_tat": 0.23, "asgn_tat": 2.6, "a2i_tat": 3.1, "dau": 394.5, "dau_pct": 98.1, "om_opens_d": 5431, "tech_opens_d": 1269, "leadday_pct": 99.6}, "gate": {"2026-06": {"den": 1091, "num": 365, "csps": 311, "csp3": 153, "pass3": 38, "topup": 333500, "rate": 33.5}, "2026-07": {"den": 342, "num": 61, "csps": 190, "csp3": 40, "pass3": 2, "topup": 18800, "rate": 17.8}}, "raw_installs": {"2026-06": {"n": 334, "csps": 170}, "2026-07": {"n": 61, "csps": 54}}, "ab_enrolled": 51178};
+function d1(v){return (v==null)?'—':Number(v).toLocaleString('en-IN');}
+function k(v){if(v==null)return '—';return v>=1000?(v/1000).toFixed(1)+'K':String(v);}
+function mname(m){var d=new Date(m+'-15');return d.toLocaleString('en',{month:'long'});}
+function delta(pre,post,good){
+  if(pre==null||post==null||pre==0)return '<span class=flat>—</span>';
+  var pc=Math.round((post-pre)/Math.abs(pre)*100);
+  var improved = good=='up' ? pc>0 : pc<0;
+  var cls = pc==0?'flat':(improved?'up':'down');
+  return '<span class="delta '+cls+'">'+(pc>0?'+':'')+pc+'%</span>';}
+function row(label,pre,post,good,suf){suf=suf||'';
+  return '<tr><td class=l>'+label+'</td><td class=pre>'+(pre==null?'—':d1(pre)+suf)+'</td><td class=post>'+(post==null?'—':d1(post)+suf)+'</td><td>'+delta(pre,post,good)+'</td></tr>';}
+function row2(label,a,b,suf){suf=suf||'';
+  return '<tr><td class=l>'+label+'</td><td class=pre>'+(a==null?'—':d1(a)+suf)+'</td><td class=post>'+(b==null?'—':d1(b)+suf)+'</td></tr>';}
+(function(){
+  var P=D.PRE||{},Q=D.POST||{},pm=D.months.prev,cm=D.months.cur;
+  var g6=(D.gate||{})[pm]||{},g7=(D.gate||{})[cm]||{};
+  var r6=(D.raw_installs||{})[pm]||{},r7=(D.raw_installs||{})[cm]||{};
+  document.getElementById('gen').textContent=D.generated;
+  document.getElementById('pd').textContent=(D.days&&D.days.POST)||'—';
+  document.getElementById('nh').textContent=D.n_hours||'—';
+  document.getElementById('ncsp').textContent=D.enrolled||'—';
+  document.getElementById('k_enr').textContent=d1(D.enrolled);
+  document.getElementById('k_ab').textContent=k(D.ab_enrolled);
+  document.getElementById('k_leads').textContent=d1(Q.sent_d);
+  document.getElementById('k_leads_s').textContent='PRE '+d1(P.sent_d)+'/day';
+  document.getElementById('k_inst').textContent=d1(Q.inst_d);
+  document.getElementById('k_inst_s').textContent='PRE '+d1(P.inst_d)+'/day';
+  document.getElementById('k_mtd').textContent=d1(r7.n);
+  document.getElementById('k_mtd_l').textContent=mname(cm)+' installs (raw MTD)';
+  document.getElementById('k_mtd_s').textContent=mname(pm)+' (from 16th): '+d1(r6.n);
+  document.getElementById('k_gate').textContent=(g7.rate==null?'—':g7.rate+'%');
+  document.getElementById('k_gate_l').textContent=mname(cm)+' gate rate (MG doc rule)';
+  document.getElementById('k_gate_s').textContent=(g7.pass3==null?'':g7.pass3+' CSPs on track · ₹'+d1(g7.topup));
+  document.getElementById('gm1').textContent=mname(pm)+' (full)';
+  document.getElementById('gm2').textContent=mname(cm)+' MTD';
+  document.getElementById('t1').innerHTML=
+    row('CSPs opening daily (% of enrolled)',P.dau_pct,Q.dau_pct,'up','%')+
+    row('Opens/day — Owner+Admin',P.om_opens_d,Q.om_opens_d,'up')+
+    row('Opens/day — Technician',P.tech_opens_d,Q.tech_opens_d,'up')+
+    row('Opened app on lead-day',P.leadday_pct,Q.leadday_pct,'up','%');
+  document.getElementById('t2').innerHTML=
+    row('Leads received / day',P.sent_d,Q.sent_d,'up')+
+    row('CSPs receiving a lead / day',P.reach_d,Q.reach_d,'up');
+  document.getElementById('t3').innerHTML=
+    row('Responded ≤14h (propose/decline)',P.resp14_pct,Q.resp14_pct,'up','%')+
+    row('Slot proposed (matured)',P.prop_pct,Q.prop_pct,'up','%')+
+    row('Median propose TAT',P.prop_tat,Q.prop_tat,'down','h')+
+    row('CSP declined',P.decl_pct,Q.decl_pct,'down','%');
+  document.getElementById('t4').innerHTML=
+    row('Technician assigned',P.asgn_pct,Q.asgn_pct,'up','%')+
+    row('Assigned → installed',P.a2i_pct,Q.a2i_pct,'up','%')+
+    row('Failure reports (of leads)',P.fail_pct,Q.fail_pct,'down','%')+
+    row('Assign→install TAT',P.a2i_tat,Q.a2i_tat,'down','h');
+  document.getElementById('t5').innerHTML=
+    row('Installs / day (matured)',P.inst_d,Q.inst_d,'up')+
+    row('Install % of leads (matured)',P.inst_pct,Q.inst_pct,'up','%');
+  document.getElementById('tg').innerHTML=
+    row2('Install rate (pooled)',g6.rate,g7.rate,'%')+
+    row2('CSPs with ≥3 matured leads',g6.csp3,g7.csp3)+
+    row2('CSPs above 60% (on track)',g6.pass3,g7.pass3)+
+    row2('Projected top-up ₹',g6.topup,g7.topup);
+})();
+</script></body></html>
